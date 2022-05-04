@@ -1,0 +1,6 @@
+Ground,Gravel,Rail,Poles,Cables,Signs,Herbs,TreesDistant
+>
+_:nDistant(x.y),Coils(x),nCoils(y)
+_:nDistan
+
+

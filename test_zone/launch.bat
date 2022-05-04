@@ -1,0 +1,1 @@
+python -u training.py --train olloki_substation_trainV23_5cm.txt --test traintest_features_V23_5cm.txt --labels 6 --epoch 15 --output output/olloki_300

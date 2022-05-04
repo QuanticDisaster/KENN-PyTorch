@@ -1,0 +1,11 @@
+Coils,Poles,Ground,Foundations,Structure,Box,Platforms
+Distant
+
+>
+_:nDistant(x.y),Coils(x),nCoils(y)
+_:nDistant(x.y),Poles(x),nPoles(y)
+_:nDistant(x.y),Ground(x),nGround(y)
+_:nDistant(x.y),Foundations(x),nFoundations(y)
+_:nDistant(x.y),Structure(x),nStructure(y)
+_:nDistant(x.y),Box(x),nBox(y)
+_:nDistant(x.y),Platforms(x),nPlatforms(y)
