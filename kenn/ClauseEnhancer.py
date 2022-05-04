@@ -89,6 +89,7 @@ class ClauseEnhancer(torch.nn.Module):
         # [b, l]
         selected_predicates = self.select_predicates(ground_atoms)
 
+        self.signs = self.signs.to(selected_predicates.device)
         delta = self.conorm_boost(selected_predicates, self.signs)
 
         # [b, 2|U|+|B|]
