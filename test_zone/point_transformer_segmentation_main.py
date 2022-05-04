@@ -177,8 +177,26 @@ class Net(torch.nn.Module):
 
         # Class score
         out = self.lin(x)
-
-        return F.log_softmax(out, dim=-1)
+        
+        #save pre-kenn values (will serve to compare)
+        self.pre_kenn = out
+                
+        #compute in the same line 1.edges between points closer than a 0.3m radius 2.distance between points linked.
+        radius = 0.3
+        temp = T.Distance()(T.RadiusGraph(radius)(data.clone())) 
+        
+        #make binaries between 0 and 1. 
+        #In this specific case with distance, 0 are points close to each other
+        binaries = 1 - torch.abs(temp.edge_attr / radius)
+        
+        # sx and sy : index vectors
+        # b : the values. Here the distance for instance. The binary value should be 0 if points are
+        unary_predictions, _ = self.kenn_layer(out, binaries, temp.edge_index[0], temp.edge_index[1])
+        unary_predictions = unary_predictions.to(out.device)
+        self.post_kenn = unary_predictions
+        return F.log_softmax(unary_predictions, dim=-1)
+        
+        #return F.log_softmax(out, dim=-1)
 
 def train():
     model.train()
